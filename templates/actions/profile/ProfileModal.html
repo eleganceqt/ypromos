@@ -1,0 +1,178 @@
+<div class="ui large modal profileModal">
+    <i class="close icon"></i>
+
+    <div class="ui small center aligned header">{$profile.name|escape} (#{$profileId})</div>
+    <div class="scrolling content" style="height: calc(65vh);">
+        <div class="ui form">
+
+            <!-- profile id -->
+            <input type="hidden" name="profile_id" value="{$profileId}">
+
+            <!-- promocodes -->
+            <div class="field">
+                <label>Промокод</label>
+                <div class="ui fluid search profilePromocodeSearch">
+                    <div class="ui icon input">
+                        <input type="text" class="prompt" autocomplete="off">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+
+                <div class="ui accordion profilePromocodeAccordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i> Список промоакций
+                        {$promocodesCount = count($profile.promos.promocode)}
+                        <span class="bold gray counter" data-items-count="{$promocodesCount}">({$promocodesCount})</span>
+                    </div>
+                    <div class="content">
+                        <div class="ui middle aligned selection list profilePromocodeList">
+                            <!-- @formatter:off -->
+                            {foreach $profile.promos.promocode as $promocode}
+                                <div class="item">
+                                    <div class="right floated content">
+                                        <i class="remove icon profileListItemRemove"></i>
+                                    </div>
+                                    <i class="archive icon"></i>
+                                    <div class="content">
+                                        <a class="header">{$promocode.promo_name|escape}</a>
+                                        <input type="hidden" name="promocodes[]" value="{$promocode.promo_id}" class="exceptItem">
+                                    </div>
+                                </div>
+                            {/foreach}
+                             <!-- @formatter:on -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- promoflashes -->
+            <div class="field">
+                <label>Специальная цена</label>
+                <div class="ui fluid search profilePromoflashSearch">
+                    <div class="ui icon input">
+                        <input type="text" class="prompt" autocomplete="off">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+
+                <div class="ui accordion profilePromoflashAccordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i> Список промоакций
+                        {$promoflashesCount = count($profile.promos.promoflash)}
+                        <span class="bold gray counter" data-items-count="{$promoflashesCount}">({$promoflashesCount})</span>
+                    </div>
+                    <div class="content">
+                        <div class="ui middle aligned selection list profilePromoflashList">
+                            <!-- @formatter:off -->
+                            {foreach $profile.promos.promoflash as $promoflash}
+                                <div class="item">
+                                    <div class="right floated content">
+                                        <i class="remove icon profileListItemRemove"></i>
+                                    </div>
+                                    <i class="archive icon"></i>
+                                    <div class="content">
+                                        <a class="header">{$promoflash.promo_name|escape}</a>
+                                        <input type="hidden" name="promoflashes[]" value="{$promoflash.promo_id}" class="exceptItem">
+                                    </div>
+                                </div>
+                            {/foreach}
+                             <!-- @formatter:on -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- promonplusms -->
+            <div class="field">
+                <label>N + M</label>
+                <div class="ui fluid search profilePromonplusmSearch">
+                    <div class="ui icon input">
+                        <input type="text" class="prompt" autocomplete="off">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+
+                <div class="ui accordion profilePromonplusmAccordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i> Список промоакций
+                        {$promonplusmsCount = count($profile.promos.promonplusm)}
+                        <span class="bold gray counter" data-items-count="{$promonplusmsCount}">({$promonplusmsCount})</span>
+                    </div>
+                    <div class="content">
+                        <div class="ui middle aligned selection list profilePromonplusmList">
+                            <!-- @formatter:off -->
+                            {foreach $profile.promos.promonplusm as $promonplusm}
+                                <div class="item">
+                                    <div class="right floated content">
+                                        <i class="remove icon profileListItemRemove"></i>
+                                    </div>
+                                    <i class="archive icon"></i>
+                                    <div class="content">
+                                        <a class="header">{$promonplusm.promo_name|escape}</a>
+                                        <input type="hidden" name="promonplusms[]" value="{$promonplusm.promo_id}" class="exceptItem">
+                                    </div>
+                                </div>
+                            {/foreach}
+                             <!-- @formatter:on -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- promogifts -->
+            <div class="field">
+                <label>Подарок</label>
+                <div class="ui fluid search profilePromogiftSearch">
+                    <div class="ui icon input">
+                        <input type="text" class="prompt" autocomplete="off">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+
+                <div class="ui accordion profilePromogiftAccordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i> Список промоакций
+                        {$promogiftsCount = count($profile.promos.promogift)}
+                        <span class="bold gray counter" data-items-count="{$promogiftsCount}">({$promogiftsCount})</span>
+                    </div>
+                    <div class="content">
+                        <div class="ui middle aligned selection list profilePromogiftList">
+                            <!-- @formatter:off -->
+                            {foreach $profile.promos.promogift as $promogift}
+                                <div class="item">
+                                    <div class="right floated content">
+                                        <i class="remove icon profileListItemRemove"></i>
+                                    </div>
+                                    <i class="archive icon"></i>
+                                    <div class="content">
+                                        <a class="header">{$promogift.promo_name|escape}</a>
+                                        <input type="hidden" name="promogifts[]" value="{$promogift.promo_id}" class="exceptItem">
+                                    </div>
+                                </div>
+                            {/foreach}
+                             <!-- @formatter:on -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="ui inverted dimmer profileModalSuccessDimmer">
+        <div class="content">
+            <h2 class="ui icon header" style="color: black;">
+                <i class="green check icon"></i>
+                Сохранено
+            </h2>
+        </div>
+    </div>
+
+    <div class="actions" style="text-align: center;">
+        <button class="ui primary bttn profileModalSave">Сохранить</button>
+    </div>
+</div>

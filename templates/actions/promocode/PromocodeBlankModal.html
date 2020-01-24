@@ -1,0 +1,92 @@
+<div class="ui large modal promocodeBlankModal">
+    <i class="close icon"></i>
+    <div class="ui small center aligned header">Новая промоакция</div>
+    <div class="scrolling content" style="height: calc(60vh);">
+        <div class="ui form">
+
+            <!-- name -->
+            <div class="field">
+                <label>Название</label>
+                <input type="text" name="name" autocomplete="off">
+            </div>
+
+            <!-- coupon -->
+            <div class="field">
+                <label>Купон</label>
+                <div class="ui selection dropdown">
+                    <input type="hidden" name="coupon_id">
+                    <i class="dropdown icon"></i>
+                    <div class="default text"></div>
+                    <div class="menu">
+                        <!-- @formatter:off -->
+                        {foreach $coupons as $coupon}
+                            {$formattedValue = shopYpromosPluginPromocodeSupporter::formatCouponValue($coupon)}
+                            <div class="item" data-value="{$coupon.id}">{$coupon.code|escape}
+                                <span class="grey"> (Скидка - {$formattedValue})</span>
+                            </div>
+                        {/foreach}
+                        <!-- @formatter:on -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- products -->
+            <div class="field">
+                <label>Товары</label>
+                <div class="ui fluid search promocodeProductSearch">
+                    <div class="ui icon input">
+                        <input type="text" class="prompt" autocomplete="off">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+
+                <div class="ui accordion promocodeProductsAccordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i> Список товаров
+                        <span class="bold gray counter" data-items-count="0">(0)</span>
+                    </div>
+                    <div class="content">
+                        <div class="ui middle aligned selection list promocodeProductList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- categories -->
+            <div class="field">
+                <label>Категории</label>
+                <div class="ui fluid search promocodeCategorySearch">
+                    <div class="ui icon input">
+                        <input type="text" class="prompt" autocomplete="off">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+
+                <div class="ui accordion promocodeCategoriesAccordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i> Список категорий
+                        <span class="bold gray counter" data-items-count="0">(0)</span>
+                    </div>
+                    <div class="content">
+                        <div class="ui middle aligned selection list promocodeCategoryList"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="ui inverted dimmer promocodeBlankModalSuccessDimmer">
+        <div class="content">
+            <h2 class="ui icon header" style="color: black;">
+                <i class="green check icon"></i>
+                Сохранено
+            </h2>
+        </div>
+    </div>
+
+    <div class="actions" style="text-align: center;">
+        <button class="ui primary bttn promocodeBlankModalSave">Сохранить</button>
+    </div>
+</div>

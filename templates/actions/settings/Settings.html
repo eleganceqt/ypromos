@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="/wa-apps/shop/plugins/ypromos/assets/semantic-ui/semantic.css?v={$wa->version()}">
+
+<div class="ui centered grid settingsContainer">
+
+    <div class="twelve wide column">
+        <table class="ui compact celled selectable table">
+            <thead>
+                <tr class="center aligned">
+                    <th class="ten wide">
+                        Профили выгрузки
+                    </th>
+                    <th class="two wide"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <!-- @formatter:off -->
+                {foreach $ymProfiles as $profileId => $profile}
+                    <tr data-profile-id="{$profileId}">
+                        <td class="left aligned">
+                            <div class="ui tiny header">{$profile.name|escape}</div>
+                        </td>
+                        <td class="center aligned">
+                            <button class="ui small bttn activateProfileModal">
+                                <i class="edit icon"></i>
+                                Редактировать
+                            </button>
+                        </td>
+                    </tr>
+                {/foreach}
+                <!-- @formatter:on -->
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script src="/wa-apps/shop/plugins/ypromos/assets/semantic-ui/semantic.min.js"></script>
+<script src="/wa-apps/shop/plugins/ypromos/assets/jquery-easing/jquery.easing.1.3.js"></script>
+<script src="/wa-apps/shop/plugins/ypromos/js/settings.js?v={$wa->version()}"></script>

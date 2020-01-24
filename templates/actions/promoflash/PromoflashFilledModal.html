@@ -1,0 +1,89 @@
+<div class="ui large modal promoflashFilledModal">
+    <i class="close icon"></i>
+    <div class="ui small center aligned header">Промоакция #{$promoflash.id}</div>
+    <div class="scrolling content" style="height: calc(60vh);">
+
+        <div class="ui form">
+
+            <!-- promo id -->
+            <input type="hidden" name="promo_id" value="{$promoflash.id}">
+
+            <!-- name -->
+            <div class="field">
+                <label>Название</label>
+                <input type="text" name="name" value="{$promoflash.name|escape}" autocomplete="off">
+            </div>
+
+            <!-- date -->
+            <div class="field">
+                <label>Дата</label>
+                <div class="two fields" style="width: 100%; margin: inherit;">
+                    <div class="field" style="padding-left: 0em; padding-right: 0em;">
+                        <div class="ui left icon input">
+                            <input type="text" name="start_date" class="datepickerInput" value="{date('d.m.Y', strtotime($promoflash.start_date))}" readonly>
+                            <i class="calendar alternate icon"></i>
+                        </div>
+                    </div>
+                    <div class="field" style="padding-left: 0em; padding-right: 0em; margin-left: 1em;">
+                        <div class="ui icon input">
+                            <input type="text" name="end_date" class="datepickerInput" value="{date('d.m.Y', strtotime($promoflash.end_date))}" readonly>
+                            <i class="calendar alternate icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- products -->
+            <div class="field">
+                <label>Товары</label>
+                <div class="ui fluid search promoflashProductSearch">
+                    <div class="ui icon input">
+                        <input type="text" class="prompt" autocomplete="off">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+
+                <div class="ui accordion promoflashProductsAccordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i> Список товаров
+                        {$productsCount = count($promoflash.products)}
+                        <span class="bold gray counter" data-items-count="{$productsCount}">({$productsCount})</span>
+                    </div>
+                    <div class="content">
+                        <div class="ui middle aligned selection list promoflashProductList">
+                            <!-- @formatter:off -->
+                            {foreach $promoflash.products as $product}
+                                <div class="item">
+                                    <div class="right floated content">
+                                        <i class="remove icon promoflashListItemRemove"></i>
+                                    </div>
+                                    <i class="file icon"></i>
+                                    <div class="content">
+                                        <a class="header" href="/webasyst/shop/?action=products#/product/{$product.id}/" target="_blank">{$product.name|escape}</a>
+                                        <input type="hidden" name="products[]" value="{$product.id}" class="exceptItem">
+                                    </div>
+                                </div>
+                            {/foreach}
+                             <!-- @formatter:on -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="ui inverted dimmer promoflashFilledModalSuccessDimmer">
+        <div class="content">
+            <h2 class="ui icon header" style="color: black;">
+                <i class="green check icon"></i>
+                Сохранено
+            </h2>
+        </div>
+    </div>
+
+    <div class="actions" style="text-align: center;">
+        <button class="ui primary bttn promoflashFilledModalSave">Сохранить</button>
+    </div>
+</div>

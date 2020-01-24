@@ -1,0 +1,51 @@
+<div class="ui large modal promonplusmBlankModal">
+    <i class="close icon"></i>
+    <div class="ui small center aligned header">Новая промоакция</div>
+    <div class="scrolling content" style="height: calc(60vh);">
+
+        <div class="ui form">
+
+            <!-- name -->
+            <div class="field">
+                <label>Название</label>
+                <input type="text" name="name" autocomplete="off">
+            </div>
+
+            <!-- products -->
+            <div class="field">
+                <label>Товары</label>
+                <div class="ui fluid search promonplusmProductSearch">
+                    <div class="ui icon input">
+                        <input type="text" class="prompt" autocomplete="off">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+
+                <div class="ui accordion promonplusmProductsAccordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i> Список товаров
+                        <span class="bold gray counter" data-items-count="0">(0)</span>
+                    </div>
+                    <div class="content">
+                        <div class="ui middle aligned selection list promonplusmProductList"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="ui inverted dimmer promonplusmBlankModalSuccessDimmer">
+        <div class="content">
+            <h2 class="ui icon header" style="color: black;">
+                <i class="green check icon"></i>
+                Сохранено
+            </h2>
+        </div>
+    </div>
+
+    <div class="actions" style="text-align: center;">
+        <button class="ui primary bttn promonplusmBlankModalSave">Сохранить</button>
+    </div>
+</div>

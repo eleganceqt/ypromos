@@ -1,0 +1,73 @@
+<div class="ui large modal promogiftBlankModal">
+    <i class="close icon"></i>
+    <div class="ui small center aligned header">Новая промоакция</div>
+    <div class="scrolling content" style="height: calc(60vh);">
+
+        <div class="ui form">
+
+            <!-- name -->
+            <div class="field">
+                <label>Название</label>
+                <input type="text" name="name" autocomplete="off">
+            </div>
+
+            <!-- products -->
+            <div class="field">
+                <label>Товары</label>
+                <div class="ui fluid search promogiftProductSearch">
+                    <div class="ui icon input">
+                        <input type="text" class="prompt" autocomplete="off">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+
+                <div class="ui accordion promogiftProductsAccordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i> Список товаров
+                        <span class="bold gray counter" data-items-count="0">(0)</span>
+                    </div>
+                    <div class="content">
+                        <div class="ui middle aligned selection list promogiftProductList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- categories -->
+            <div class="field">
+                <label>Категории</label>
+                <div class="ui fluid search promogiftCategorySearch">
+                    <div class="ui icon input">
+                        <input type="text" class="prompt" autocomplete="off">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+
+                <div class="ui accordion promogiftCategoriesAccordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i> Список категорий
+                        <span class="bold gray counter" data-items-count="0">(0)</span>
+                    </div>
+                    <div class="content">
+                        <div class="ui middle aligned selection list promogiftCategoryList"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="ui inverted dimmer promogiftBlankModalSuccessDimmer">
+        <div class="content">
+            <h2 class="ui icon header" style="color: black;">
+                <i class="green check icon"></i>
+                Сохранено
+            </h2>
+        </div>
+    </div>
+
+    <div class="actions" style="text-align: center;">
+        <button class="ui primary bttn promogiftBlankModalSave">Сохранить</button>
+    </div>
+</div>

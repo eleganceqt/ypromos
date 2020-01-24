@@ -1,0 +1,128 @@
+<div class="ui large modal promocodeFilledModal">
+    <i class="close icon"></i>
+    <div class="ui small center aligned header">Промоакция #{$promocode.id}</div>
+    <div class="scrolling content" style="height: calc(60vh);">
+
+        <div class="ui form">
+
+            <!-- promo id -->
+            <input type="hidden" name="promo_id" value="{$promocode.id}">
+
+            <!-- name -->
+            <div class="field">
+                <label>Название</label>
+                <input type="text" name="name" value="{$promocode.name|escape}" autocomplete="off">
+            </div>
+
+            <!-- coupon -->
+            <div class="field">
+                <label>Купон</label>
+                <div class="ui selection dropdown">
+                    <input type="hidden" name="coupon_id" value="{if shopYpromosPluginPromocodeSupporter::isPromocodeValid($promocode)}{$promocode.coupon_id}{/if}">
+                    <i class="dropdown icon"></i>
+                    <div class="default text"></div>
+                    <div class="menu">
+                        <!-- @formatter:off -->
+                        {foreach $coupons as $coupon}
+                            {$formattedValue = shopYpromosPluginPromocodeSupporter::formatCouponValue($coupon)}
+                            <div class="item" data-value="{$coupon.id}">{$coupon.code|escape}
+                                <span class="grey"> (Скидка - {$formattedValue})</span>
+                            </div>
+                        {/foreach}
+                        <!-- @formatter:on -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- products -->
+            <div class="field">
+                <label>Товары</label>
+                <div class="ui fluid search promocodeProductSearch">
+                    <div class="ui icon input">
+                        <input type="text" class="prompt" autocomplete="off">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+
+                <div class="ui accordion promocodeProductsAccordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i> Список товаров
+                        {$productsCount = count($promocode.products)}
+                        <span class="bold gray counter" data-items-count="{$productsCount}">({$productsCount})</span>
+                    </div>
+                    <div class="content">
+                        <div class="ui middle aligned selection list promocodeProductList">
+                            <!-- @formatter:off -->
+                            {foreach $promocode.products as $product}
+                                <div class="item">
+                                    <div class="right floated content">
+                                        <i class="remove icon promocodeListItemRemove"></i>
+                                    </div>
+                                    <i class="file icon"></i>
+                                    <div class="content">
+                                        <a class="header" href="/webasyst/shop/?action=products#/product/{$product.id}/" target="_blank">{$product.name|escape}</a>
+                                        <input type="hidden" name="products[]" value="{$product.id}" class="exceptItem">
+                                    </div>
+                                </div>
+                            {/foreach}
+                             <!-- @formatter:on -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- categories -->
+            <div class="field">
+                <label>Категории</label>
+                <div class="ui fluid search promocodeCategorySearch">
+                    <div class="ui icon input">
+                        <input type="text" class="prompt" autocomplete="off">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+
+                <div class="ui accordion promocodeCategoriesAccordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i> Список категорий
+                        {$categoriesCount = count($promocode.categories)}
+                        <span class="bold gray counter" data-items-count="{$categoriesCount}">({$categoriesCount})</span>
+                    </div>
+                    <div class="content">
+                        <div class="ui middle aligned selection list promocodeCategoryList">
+                            <!-- @formatter:off -->
+                            {foreach $promocode.categories as $category}
+                                <div class="item">
+                                    <div class="right floated content">
+                                        <i class="remove icon promocodeListItemRemove"></i>
+                                    </div>
+                                    <i class="folder icon"></i>
+                                    <div class="content">
+                                        <a class="header" href="/webasyst/shop/?action=products#/products/category_id={$category.id}/" target="_blank">{$category.name|escape}</a>
+                                        <input type="hidden" name="categories[]" value="{$category.id}" class="exceptItem">
+                                    </div>
+                                </div>
+                            {/foreach}
+                            <!-- @formatter:on -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="ui inverted dimmer promocodeFilledModalSuccessDimmer">
+        <div class="content">
+            <h2 class="ui icon header" style="color: black;">
+                <i class="green check icon"></i>
+                Сохранено
+            </h2>
+        </div>
+    </div>
+
+    <div class="actions" style="text-align: center;">
+        <button class="ui primary bttn promocodeFilledModalSave">Сохранить</button>
+    </div>
+</div>

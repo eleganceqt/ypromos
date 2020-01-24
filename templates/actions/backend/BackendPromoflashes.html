@@ -1,0 +1,46 @@
+<h4 class="ui dividing header">Специальная цена в определенный период</h4>
+
+<table class="ui small compact selectable celled table">
+    <thead>
+        <tr class="center aligned">
+            <th class="one wide"></th>
+            <th class="six wide">Название</th>
+            <th class="two wide">Дата начала</th>
+            <th class="two wide">Дата окончания</th>
+            <th class="one wide"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- @formatter:off -->
+        {foreach $promoflashes as $promoflash}
+        <tr class="center aligned" data-promo-id="{$promoflash.id}">
+            <td>
+                <i class="{if shopYpromosPluginPromoflashSupporter::isPromoflashValid($promoflash)}check circle green{else}exclamation circle red{/if} icon"></i>
+            </td>
+            <td>
+                <div class="ui tiny header">{$promoflash.name|escape}</div>
+            </td>
+            <td>{date('d.m.Y', strtotime($promoflash.start_date))}</td>
+            <td>{date('d.m.Y', strtotime($promoflash.end_date))}</td>
+            <td>
+                <button class="ui compact small icon bttn promoflashActivateFilledModal">
+                    <i class="pencil alternate icon"></i>
+                </button>
+                <button class="ui compact small icon bttn promoflashRemovePromo">
+                    <i class="trash alternate icon"></i>
+                </button>
+            </td>
+        </tr>
+        {/foreach}
+        <!-- @formatter:on -->
+    </tbody>
+    <tfoot>
+        <tr class="center aligned">
+            <th colspan="5">
+                <button class="ui bttn promoflashActivateBlankModal">
+                    <i class="edit icon"></i> Добавить промоакцию
+                </button>
+            </th>
+        </tr>
+    </tfoot>
+</table>

@@ -1,0 +1,60 @@
+<h4 class="ui dividing header">При покупке N товаров M таких же товаров бесплатно</h4>
+
+{$hasAddGiftsPlugin = shopYpromosPluginPromonplusmSupporter::hasAddGiftsPlugin()}
+
+{if $hasAddGiftsPlugin}
+<table class="ui small compact selectable celled table">
+    <thead>
+        <tr class="center aligned">
+            <th class="one wide"></th>
+            <th class="ten wide">Название</th>
+            <th class="one wide"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- @formatter:off -->
+        {foreach $promonplusms as $promonplusm}
+            <tr class="center aligned" data-promo-id="{$promonplusm.id}">
+                <td>
+                    <i class="check circle green icon"></i>
+                </td>
+                <td>
+                    <div class="ui tiny header">{$promonplusm.name|escape}</div>
+                </td>
+                <td>
+                    <button class="ui compact small icon bttn promonplusmActivateFilledModal">
+                        <i class="pencil alternate icon"></i>
+                    </button>
+                    <button class="ui compact small icon bttn promonplusmRemovePromo">
+                        <i class="trash alternate icon"></i>
+                    </button>
+                </td>
+            </tr>
+        {/foreach}
+        <!-- @formatter:on -->
+    </tbody>
+    <tfoot>
+        <tr class="center aligned">
+            <th colspan="4">
+                <button class="ui bttn promonplusmActivateBlankModal">
+                    <i class="edit icon"></i> Добавить промоакцию
+                </button>
+            </th>
+        </tr>
+    </tfoot>
+</table>
+
+{else}
+<!-- @formatter:off -->
+<div class="ui icon error small message">
+    <i class="exclamation triangle icon"></i>
+    <div class="content">
+        <div class="header">Почему нет доступа к акциям?</div>
+        <p>
+            Для возможности управления промоакций типа подарков, пожалуйста убедитесь что плагин
+            <a href="https://www.webasyst.ru/store/plugin/shop/addgifts/" target="_blank">«Подарки»</a> установлен и включен.
+        </p>
+    </div>
+</div>
+<!-- @formatter:on -->
+{/if}

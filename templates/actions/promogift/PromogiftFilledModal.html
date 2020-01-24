@@ -1,0 +1,108 @@
+<div class="ui large modal promogiftFilledModal">
+    <i class="close icon"></i>
+    <div class="ui small center aligned header">Промоакция #{$promogift.id}</div>
+    <div class="scrolling content" style="height: calc(60vh);">
+
+        <div class="ui form">
+
+            <!-- promo id -->
+            <input type="hidden" name="promo_id" value="{$promogift.id}">
+
+            <!-- name -->
+            <div class="field">
+                <label>Название</label>
+                <input type="text" name="name" value="{$promogift.name|escape}" autocomplete="off">
+            </div>
+
+            <!-- products -->
+            <div class="field">
+                <label>Товары</label>
+                <div class="ui fluid search promogiftProductSearch">
+                    <div class="ui icon input">
+                        <input type="text" class="prompt" autocomplete="off">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+
+                <div class="ui accordion promogiftProductsAccordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i> Список товаров
+                        {$productsCount = count($promogift.products)}
+                        <span class="bold gray counter" data-items-count="{$productsCount}">({$productsCount})</span>
+                    </div>
+                    <div class="content">
+                        <div class="ui middle aligned selection list promogiftProductList">
+                            <!-- @formatter:off -->
+                            {foreach $promogift.products as $product}
+                                <div class="item">
+                                    <div class="right floated content">
+                                        <i class="remove icon promogiftListItemRemove"></i>
+                                    </div>
+                                    <i class="file icon"></i>
+                                    <div class="content">
+                                        <a class="header" href="/webasyst/shop/?action=products#/product/{$product.id}/" target="_blank">{$product.name|escape}</a>
+                                        <input type="hidden" name="products[]" value="{$product.id}" class="exceptItem">
+                                    </div>
+                                </div>
+                            {/foreach}
+                             <!-- @formatter:on -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- categories -->
+            <div class="field">
+                <label>Категории</label>
+                <div class="ui fluid search promogiftCategorySearch">
+                    <div class="ui icon input">
+                        <input type="text" class="prompt" autocomplete="off">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+
+                <div class="ui accordion promogiftCategoriesAccordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i> Список категорий
+                        {$categoriesCount = count($promogift.categories)}
+                        <span class="bold gray counter" data-items-count="{$categoriesCount}">({$categoriesCount})</span>
+                    </div>
+                    <div class="content">
+                        <div class="ui middle aligned selection list promogiftCategoryList">
+                            <!-- @formatter:off -->
+                            {foreach $promogift.categories as $category}
+                                <div class="item">
+                                    <div class="right floated content">
+                                        <i class="remove icon promogiftListItemRemove"></i>
+                                    </div>
+                                    <i class="folder icon"></i>
+                                    <div class="content">
+                                        <a class="header" href="/webasyst/shop/?action=products#/products/category_id={$category.id}/" target="_blank">{$category.name|escape}</a>
+                                        <input type="hidden" name="categories[]" value="{$category.id}" class="exceptItem">
+                                    </div>
+                                </div>
+                            {/foreach}
+                            <!-- @formatter:on -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="ui inverted dimmer promogiftFilledModalSuccessDimmer">
+        <div class="content">
+            <h2 class="ui icon header" style="color: black;">
+                <i class="green check icon"></i>
+                Сохранено
+            </h2>
+        </div>
+    </div>
+
+    <div class="actions" style="text-align: center;">
+        <button class="ui primary bttn promogiftFilledModalSave">Сохранить</button>
+    </div>
+</div>

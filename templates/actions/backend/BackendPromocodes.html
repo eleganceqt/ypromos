@@ -1,0 +1,46 @@
+<h4 class="ui dividing header">Скидка по промокоду</h4>
+
+<table class="ui small compact selectable celled table">
+    <thead>
+        <tr class="center aligned">
+            <th class="one wide"></th>
+            <th class="eight wide">Название</th>
+            <th class="two wide">Купон</th>
+            <th class="one wide"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- @formatter:off -->
+        {foreach $promocodes as $promocode}
+            <tr class="center aligned" data-promo-id="{$promocode.id}">
+                <td>
+                    <i class="{if shopYpromosPluginPromocodeSupporter::isPromocodeValid($promocode)}check circle green{else}exclamation circle red{/if} icon"></i>
+                </td>
+                <td>
+                    <div class="ui tiny header">{$promocode.name|escape}</div>
+                </td>
+                <td>
+                    <a href="/webasyst/shop/?action=orders#/coupons/{$promocode.coupon_id}/" target="_blank">{$promocode.coupon_code}</a>
+                </td>
+                <td>
+                    <button class="ui compact small icon bttn promocodeActivateFilledModal">
+                        <i class="pencil alternate icon"></i>
+                    </button>
+                    <button class="ui compact small icon bttn promocodeRemovePromo">
+                        <i class="trash alternate icon"></i>
+                    </button>
+                </td>
+            </tr>
+        {/foreach}
+        <!-- @formatter:on -->
+    </tbody>
+    <tfoot>
+        <tr class="center aligned">
+            <th colspan="4">
+                <button class="ui bttn promocodeActivateBlankModal">
+                    <i class="edit icon"></i> Добавить промоакцию
+                </button>
+            </th>
+        </tr>
+    </tfoot>
+</table>
